@@ -9,7 +9,7 @@ node.js server
     * pm2 reload <app name> (重启)
     * 配置自动启动
       * pm2 save
-      * pm2 startup [platform] (platform为系统环境)
+      * pm2 startup platform (platform为系统环境)
   * web框架为koa
   * 数据库为mysql,版本5.7
   * ORM框架为Sequelize
