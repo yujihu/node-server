@@ -13,7 +13,7 @@ var fn_addUser = async(ctx, next) => {
         updatedAt: now,
         version: 0
     });
-    console.log('created: ' + JSON.stringify(user));
+    console.log('created user: ' + JSON.stringify(user));
     ctx.response.body = user;
 };
 
@@ -32,7 +32,7 @@ var fn_deleUser = async(ctx, next) => {
 
 var fn_getUsers = async(ctx, next) => {
     var users = await User.findAll({});
-    console.log(JSON.stringify(users));
+    console.log('find users: ' + JSON.stringify(users));
     if (users.length > 0) {
         ctx.response.body = JSON.stringify(users);
     } else {
@@ -47,7 +47,7 @@ var fn_getUserById = async(ctx, next) => {
             id: id
         }
     });
-    console.log(JSON.stringify(users));
+    console.log('find user with id: ' + JSON.stringify(users[0]));
     if (users.length > 0) {
         ctx.response.body = JSON.stringify(users[0]);
     } else {
