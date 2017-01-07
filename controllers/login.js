@@ -23,7 +23,7 @@ var fn_login = async(ctx, next) => {
     });
     console.log(JSON.stringify(users));
     if (users.length > 0) {
-        ctx.response.body = JSON.stringify(users[0]);
+        ctx.response.body = users[0];
     } else {
         ctx.response.body = 0;
     }

@@ -72,10 +72,33 @@ var fn_updUser = async(ctx, next) => {
     ctx.response.body = result;
 };
 
+var fn_searchUsers = async(ctx, next) => {
+    var key = ctx.params.key;
+    var users = await User.findAll({
+        where: {
+            username: {
+                $like: '%' + key + '%'
+            }
+        }
+    });
+    console.log('search user: ' + JSON.stringify(users));
+    if (users.length > 0) {
+        ctx.response.body = JSON.stringify(users);
+    } else {
+        ctx.response.body = 0;
+    }
+}
+
 module.exports = {
+    //获取全部用户信息
     'GET /api/user': fn_getUsers,
-    'GET /api/user/:id': fn_getUserById,
+    // 'GET /api/user/:id': fn_getUserById,
+    //添加用户
     'POST /api/user': fn_addUser,
+    //删除用户
     'DELETE /api/user/:id': fn_deleUser,
-    'PUT /api/user': fn_updUser
+    //更新用户
+    'PUT /api/user': fn_updUser,
+    //搜索用户
+    'GET /api/user/:key': fn_searchUsers
 };
